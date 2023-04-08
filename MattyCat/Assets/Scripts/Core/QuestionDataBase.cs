@@ -12,8 +12,11 @@ namespace MattyCat.Core
             public float Answer;
         }
         private static Dictionary<int, List<QuestionData>> dataBase = new();
+#if UNITY_EDITOR
+        public static Dictionary<int, List<QuestionData>> DataBase { get => dataBase; }
+#endif
 
-        private void Start()
+        public void Start()
         {
             var questions = Resources.LoadAll("Questions");
             foreach (var question in questions)
@@ -35,6 +38,7 @@ namespace MattyCat.Core
 
         public static QuestionData GetQuestion(int grade)
         {
+            if (!dataBase.ContainsKey(grade)) return default;
             return dataBase[grade][Random.Range(0, dataBase[grade].Count)];
         }
     }
