@@ -8,6 +8,7 @@ namespace MattyCat.Core
     public class QuestionDataObject : ScriptableObject
     {
         [SerializeField]
+        [TextArea]
         private string question = "";
         public string Question { get => question; }
 
