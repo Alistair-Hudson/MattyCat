@@ -34,7 +34,24 @@ namespace MattyCat.Core
         {
             float answer = float.Parse(userAnswer);
             Debug.Log($"Correct: {answer == questionData.Answer}");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            bool reset = false;
+            if (answer == questionData.Answer)
+            {
+                reset = SystemInformation.HitEnemy();
+            }
+            else
+            {
+                reset = SystemInformation.HitPlayer();
+            }
+
+            if (!reset)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }
         }
 
         private void SetAnswer(string arg0)
