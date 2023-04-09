@@ -14,7 +14,7 @@ namespace MattyCat.Test.Editor
         {
             var obj = new GameObject();
             var dataBase = obj.AddComponent<QuestionDataBase>();
-            dataBase.Start();
+            dataBase.Awake();
         }
 
         [Test]

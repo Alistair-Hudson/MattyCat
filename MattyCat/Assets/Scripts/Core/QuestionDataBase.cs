@@ -16,7 +16,7 @@ namespace MattyCat.Core
         public static Dictionary<int, List<QuestionData>> DataBase { get => dataBase; }
 #endif
 
-        public void Start()
+        public void Awake()
         {
             var questions = Resources.LoadAll("Questions");
             foreach (var question in questions)
