@@ -12,9 +12,7 @@ namespace MattyCat.Core
             public float Answer;
         }
         private static Dictionary<int, List<QuestionData>> dataBase = new();
-#if UNITY_EDITOR
         public static Dictionary<int, List<QuestionData>> DataBase { get => dataBase; }
-#endif
 
         public void Awake()
         {
