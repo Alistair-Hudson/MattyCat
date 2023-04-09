@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa86729e001fda4b9fe700cfe7a98c0, type: 3}
   m_Name: 4+0
   m_EditorClassIdentifier: 
-  question: 2 + 0=
-  answer: 2
-  grade: 2
+  question: 4 + 0 =
+  answer: 4
+  grade: 4
