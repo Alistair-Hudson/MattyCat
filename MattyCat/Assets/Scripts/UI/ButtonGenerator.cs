@@ -15,16 +15,19 @@ namespace MattyCat.UI
 
         void OnEnable()
         {
-            foreach (var key in QuestionDataBase.DataBase.Keys)
+            foreach (var grade in QuestionDataBase.DataBase.Keys)
             {
-                Button newButton = Instantiate(buttonPrefab, transform);
-                newButton.GetComponentInChildren<TMP_Text>().text = key.ToString();
-                newButton.onClick.AddListener(delegate { 
-                    SystemInformation.Grade = key;
-                    SystemInformation.Level = 1;
-                    Debug.Log($"Grade selected: {key}");
-                    SceneManager.LoadScene("MainGamePlayScene");
-                });
+                foreach (var level in QuestionDataBase.DataBase[grade].Keys)
+                {
+                    Button newButton = Instantiate(buttonPrefab, transform);
+                    newButton.GetComponentInChildren<TMP_Text>().text = $"{grade}.{level}";
+                    newButton.onClick.AddListener(delegate { 
+                        SystemInformation.Grade = grade;
+                        SystemInformation.Level = level;
+                        Debug.Log($"Grade selected: {grade}.{level}");
+                        SceneManager.LoadScene("MainGamePlayScene");
+                    });
+                }
             }
         }
 
