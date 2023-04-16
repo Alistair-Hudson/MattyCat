@@ -1,4 +1,4 @@
-using MattyCat.Core;
+using MattyMacCat.Core;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace MattyCat.UI
+namespace MattyMacCat.UI
 {
     public class ButtonGenerator : MonoBehaviour
     {
@@ -16,20 +16,6 @@ namespace MattyCat.UI
         private void OnEnable()
         {
             GenerateGradeButtons();
-            //foreach (var grade in QuestionDataBase.DataBase.Keys)
-            //{
-            //    foreach (var level in QuestionDataBase.DataBase[grade].Keys)
-            //    {
-            //        Button newButton = Instantiate(buttonPrefab, transform);
-            //        newButton.GetComponentInChildren<TMP_Text>().text = $"{grade}.{level}";
-            //        newButton.onClick.AddListener(delegate { 
-            //            SystemInformation.Grade = grade;
-            //            SystemInformation.Level = level;
-            //            Debug.Log($"Grade selected: {grade}.{level}");
-            //            SceneManager.LoadScene("MainGamePlayScene");
-            //        });
-            //    }
-            //}
         }
 
         private void OnDisable()

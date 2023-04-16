@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MattyCat.Core
+namespace MattyMacCat.Core
 {
     [CreateAssetMenu(fileName = "Question", menuName = "ScriptableObjects/Question", order = 0)]
     public class QuestionDataObject : ScriptableObject

@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using MattyCat.Core;
+using MattyMacCat.Core;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace MattyCat.Test.Editor
+namespace MattyMacCat.Test.Editor
 {
     public class QuestionDataBaseTests
     {

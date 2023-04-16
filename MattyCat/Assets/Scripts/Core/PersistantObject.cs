@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace MattyCat.Core
+namespace MattyMacCat.Core
 {
     public class PersistantObject : MonoBehaviour
     {

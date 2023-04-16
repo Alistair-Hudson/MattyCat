@@ -3,45 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SystemInformation : MonoBehaviour
+namespace MattyMacCat.Core
 {
-    [SerializeField]
-    private static int maxHits = 10;
-
-    public static int Grade = 0;
-    public static int Level = -1;
-
-    private static int playerHitPoints = 10;
-    public static int PlayerHitPoints { get => playerHitPoints; }
-
-    private static int enemyHitPoints = 10;
-    public static int EnemyHitPoints { get => enemyHitPoints; }
-
-    public static bool HitPlayer()
+    public class SystemInformation : MonoBehaviour
     {
-        playerHitPoints--;
-        if (playerHitPoints <= 0)
+        [SerializeField]
+        private static int maxHits = 10;
+
+        public static int Grade = 0;
+        public static int Level = -1;
+
+        private static int playerHitPoints = 10;
+        public static int PlayerHitPoints { get => playerHitPoints; }
+
+        private static int enemyHitPoints = 10;
+        public static int EnemyHitPoints { get => enemyHitPoints; }
+
+        public static bool HitPlayer()
         {
-            ResetGame();
-            return true;
+            playerHitPoints--;
+            if (playerHitPoints <= 0)
+            {
+                ResetGame();
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
 
-    public static bool HitEnemy()
-    {
-        enemyHitPoints--;
-        if (enemyHitPoints <= 0)
+        public static bool HitEnemy()
         {
-            ResetGame();
-            return true;
+            enemyHitPoints--;
+            if (enemyHitPoints <= 0)
+            {
+                ResetGame();
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
 
-    private static void ResetGame()
-    {
-        playerHitPoints = maxHits;
-        enemyHitPoints = maxHits;
+        private static void ResetGame()
+        {
+            playerHitPoints = maxHits;
+            enemyHitPoints = maxHits;
+        }
     }
 }

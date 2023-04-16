@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace MattyCat.Core
+namespace MattyMacCat.Core
 {
     public class ProblemController : MonoBehaviour
     {
