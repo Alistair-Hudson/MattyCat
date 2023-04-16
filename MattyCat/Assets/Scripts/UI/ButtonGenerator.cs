@@ -13,31 +13,71 @@ namespace MattyCat.UI
         [SerializeField]
         private Button buttonPrefab = null;
 
-        void OnEnable()
+        private void OnEnable()
         {
-            foreach (var grade in QuestionDataBase.DataBase.Keys)
-            {
-                foreach (var level in QuestionDataBase.DataBase[grade].Keys)
-                {
-                    Button newButton = Instantiate(buttonPrefab, transform);
-                    newButton.GetComponentInChildren<TMP_Text>().text = $"{grade}.{level}";
-                    newButton.onClick.AddListener(delegate { 
-                        SystemInformation.Grade = grade;
-                        SystemInformation.Level = level;
-                        Debug.Log($"Grade selected: {grade}.{level}");
-                        SceneManager.LoadScene("MainGamePlayScene");
-                    });
-                }
-            }
+            GenerateGradeButtons();
+            //foreach (var grade in QuestionDataBase.DataBase.Keys)
+            //{
+            //    foreach (var level in QuestionDataBase.DataBase[grade].Keys)
+            //    {
+            //        Button newButton = Instantiate(buttonPrefab, transform);
+            //        newButton.GetComponentInChildren<TMP_Text>().text = $"{grade}.{level}";
+            //        newButton.onClick.AddListener(delegate { 
+            //            SystemInformation.Grade = grade;
+            //            SystemInformation.Level = level;
+            //            Debug.Log($"Grade selected: {grade}.{level}");
+            //            SceneManager.LoadScene("MainGamePlayScene");
+            //        });
+            //    }
+            //}
         }
 
         private void OnDisable()
         {
+            DestroyAllButtons();
+        }
+
+        private void DestroyAllButtons()
+        {
             var buttons = GetComponentsInChildren<Button>();
-            foreach(var button in buttons)
+            foreach (var button in buttons)
             {
                 Destroy(button.gameObject);
             }
+        }
+
+        private void GenerateGradeButtons()
+        {
+            foreach (var grade in QuestionDataBase.DataBase.Keys)
+            {
+                Button newButton = Instantiate(buttonPrefab, transform);
+                newButton.GetComponentInChildren<TMP_Text>().text = $"{grade}";
+                newButton.onClick.AddListener(delegate {
+                    DestroyAllButtons();
+                    foreach (var level in QuestionDataBase.DataBase[grade].Keys)
+                    {
+                        GenrateLevelButtons(grade, level);
+                    }
+                    Button backButton = Instantiate(buttonPrefab, transform);
+                    backButton.GetComponentInChildren<TMP_Text>().text = "Back";
+                    backButton.onClick.AddListener(delegate {
+                        DestroyAllButtons();
+                        GenerateGradeButtons();
+                    });
+                });
+            }
+        }
+
+        private void GenrateLevelButtons(int grade, int level)
+        {
+            Button newButton = Instantiate(buttonPrefab, transform);
+            newButton.GetComponentInChildren<TMP_Text>().text = $"{grade}.{level}";
+            newButton.onClick.AddListener(delegate {
+                SystemInformation.Grade = grade;
+                SystemInformation.Level = level;
+                Debug.Log($"Grade selected: {grade}.{level}");
+                SceneManager.LoadScene("MainGamePlayScene");
+            });
         }
     }
 }
