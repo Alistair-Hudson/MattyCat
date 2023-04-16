@@ -9,6 +9,7 @@ public class SystemInformation : MonoBehaviour
     private static int maxHits = 10;
 
     public static int Grade = 0;
+    public static int Level = -1;
 
     private static int playerHitPoints = 10;
     public static int PlayerHitPoints { get => playerHitPoints; }

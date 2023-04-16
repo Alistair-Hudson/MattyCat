@@ -19,5 +19,9 @@ namespace MattyCat.Core
         [SerializeField]
         private int grade = 1;
         public int Grade { get => grade; }
+
+        [SerializeField]
+        private int level = 0;
+        public int Level { get => level; }
     }
 }

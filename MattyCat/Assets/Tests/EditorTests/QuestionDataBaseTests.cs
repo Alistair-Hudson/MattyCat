@@ -29,14 +29,14 @@ namespace MattyCat.Test.Editor
         }
 
         [Test]
-        public void QuestionDataBase_GetQuestionFromAExistingGrade_Correct()
+        public void QuestionDataBase_GetQuestionFromAExistingGradeAndLevel_Correct()
         {
             //Arrange
 
             //Act
 
             //Assert
-            Assert.NotNull(QuestionDataBase.GetQuestion(1), "Failed to get a question");
+            Assert.NotNull(QuestionDataBase.GetQuestion(1, 1), "Failed to get a question");
         }
 
         [Test]
@@ -45,7 +45,18 @@ namespace MattyCat.Test.Editor
             //Arrange
 
             //Act
-            var qd = QuestionDataBase.GetQuestion(-1);
+            var qd = QuestionDataBase.GetQuestion(-1, 1);
+            //Assert
+            Assert.IsTrue(string.IsNullOrEmpty(qd.Question), "Got a question");
+        }
+
+        [Test]
+        public void QuestionDataBase_GetQuestionFromANonExistingLevel_Incorrect()
+        {
+            //Arrange
+
+            //Act
+            var qd = QuestionDataBase.GetQuestion(1, -1);
             //Assert
             Assert.IsTrue(string.IsNullOrEmpty(qd.Question), "Got a question");
         }

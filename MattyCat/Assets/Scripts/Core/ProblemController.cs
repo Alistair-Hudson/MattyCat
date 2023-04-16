@@ -23,7 +23,7 @@ namespace MattyCat.Core
 
         private void Start()
         {
-            questionData = QuestionDataBase.GetQuestion(1);
+            questionData = QuestionDataBase.GetQuestion(SystemInformation.Grade, SystemInformation.Level);
             questionTextField.text = questionData.Question;
 
             answerInputField.onValueChanged.AddListener(SetAnswer);

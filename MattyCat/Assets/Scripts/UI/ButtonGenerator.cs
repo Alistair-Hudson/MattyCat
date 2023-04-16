@@ -20,7 +20,8 @@ namespace MattyCat.UI
                 Button newButton = Instantiate(buttonPrefab, transform);
                 newButton.GetComponentInChildren<TMP_Text>().text = key.ToString();
                 newButton.onClick.AddListener(delegate { 
-                    SystemInformation.Grade = key; 
+                    SystemInformation.Grade = key;
+                    SystemInformation.Level = 1;
                     Debug.Log($"Grade selected: {key}");
                     SceneManager.LoadScene("MainGamePlayScene");
                 });

@@ -11,8 +11,8 @@ namespace MattyCat.Core
             public string Question;
             public float Answer;
         }
-        private static Dictionary<int, List<QuestionData>> dataBase = new();
-        public static Dictionary<int, List<QuestionData>> DataBase { get => dataBase; }
+        private static Dictionary<int, Dictionary<int, List<QuestionData>>> dataBase = new();
+        public static Dictionary<int, Dictionary<int, List<QuestionData>>> DataBase { get => dataBase; }
 
         public void Awake()
         {
@@ -28,16 +28,21 @@ namespace MattyCat.Core
 
                 if (!dataBase.ContainsKey(q.Grade))
                 {
-                    dataBase.Add(q.Grade, new List<QuestionData>());
+                    dataBase.Add(q.Grade, new Dictionary<int, List<QuestionData>>());
                 }
-                dataBase[q.Grade].Add(qd);
+                if (!dataBase[q.Grade].ContainsKey(q.Level))
+                {
+                    dataBase[q.Grade].Add(q.Level, new List<QuestionData>());
+                }
+                dataBase[q.Grade][q.Level].Add(qd);
             }
         }
 
-        public static QuestionData GetQuestion(int grade)
+        public static QuestionData GetQuestion(int grade, int level)
         {
             if (!dataBase.ContainsKey(grade)) return default;
-            return dataBase[grade][Random.Range(0, dataBase[grade].Count)];
+            if (!dataBase[grade].ContainsKey(level)) return default;
+            return dataBase[grade][level][Random.Range(0, dataBase[grade].Count)];
         }
     }
 }

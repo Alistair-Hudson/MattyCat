@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: 4 + 0 =
   answer: 4
-  grade: 4
+  grade: 1
+  level: 4
