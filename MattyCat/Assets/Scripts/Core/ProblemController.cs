@@ -16,6 +16,8 @@ namespace MattyMacCat.Core
         private TMP_InputField answerInputField = null;
         [SerializeField]
         private Button submitButton = null;
+        [SerializeField]
+        private EnemyController enemy = null;
 
         private QuestionDataBase.QuestionData questionData;
 
@@ -23,11 +25,16 @@ namespace MattyMacCat.Core
 
         private void Start()
         {
-            questionData = QuestionDataBase.GetQuestion(GameController.Grade, GameController.Level);
-            questionTextField.text = questionData.Question;
+            SetQuestion();
 
             answerInputField.onValueChanged.AddListener(SetAnswer);
             submitButton.onClick.AddListener(CheckAnswer);
+        }
+
+        private void SetQuestion()
+        {
+            questionData = QuestionDataBase.GetQuestion(GameController.Grade, GameController.Level);
+            questionTextField.text = questionData.Question;
         }
 
         private void CheckAnswer()
@@ -38,17 +45,19 @@ namespace MattyMacCat.Core
             if (answer == questionData.Answer)
             {
                 reset = GameController.HitEnemy();
+                if (!reset)
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                }
             }
             else
             {
                 reset = GameController.HitPlayer();
+                SetQuestion();
+                answerInputField.text = "";
             }
 
-            if (!reset)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-            else
+            if (reset)
             {
                 SceneManager.LoadScene(0);
             }
