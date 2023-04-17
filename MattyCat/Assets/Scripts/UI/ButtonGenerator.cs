@@ -59,8 +59,8 @@ namespace MattyMacCat.UI
             Button newButton = Instantiate(buttonPrefab, transform);
             newButton.GetComponentInChildren<TMP_Text>().text = $"{grade}.{level}";
             newButton.onClick.AddListener(delegate {
-                SystemInformation.Grade = grade;
-                SystemInformation.Level = level;
+                SystemController.Grade = grade;
+                SystemController.Level = level;
                 Debug.Log($"Grade selected: {grade}.{level}");
                 SceneManager.LoadScene("MainGamePlayScene");
             });

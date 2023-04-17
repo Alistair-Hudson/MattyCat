@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace MattyMacCat.Core
 {
-    public class SystemInformation : MonoBehaviour
+    public class SystemController : MonoBehaviour
     {
         [SerializeField]
         private static int maxHits = 10;
@@ -20,7 +20,7 @@ namespace MattyMacCat.Core
         public static int EnemyHitPoints { get => enemyHitPoints; }
 
         private static EnemySpawnDatabase spawnDatabase = null;
-        public static EnemySpawnDatabase SpawnDatabase { get => spawnDatabase; }
+        private static EnemySpawnDatabase SpawnDatabase { get => spawnDatabase; }
 
         private void Awake()
         {
