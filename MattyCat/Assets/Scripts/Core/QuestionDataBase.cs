@@ -14,8 +14,11 @@ namespace MattyMacCat.Core
         private static Dictionary<int, Dictionary<int, List<QuestionData>>> dataBase = new();
         public static Dictionary<int, Dictionary<int, List<QuestionData>>> DataBase { get => dataBase; }
 
+        private static bool isLoaded = false;
+
         public void Awake()
         {
+            if (isLoaded) return;
             var questions = Resources.LoadAll("Questions");
             foreach (var question in questions)
             {
@@ -36,6 +39,7 @@ namespace MattyMacCat.Core
                 }
                 dataBase[q.Grade][q.Level].Add(qd);
             }
+            isLoaded = true;
         }
 
         public static QuestionData GetQuestion(int grade, int level)

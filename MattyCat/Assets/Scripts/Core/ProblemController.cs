@@ -23,7 +23,7 @@ namespace MattyMacCat.Core
 
         private void Start()
         {
-            questionData = QuestionDataBase.GetQuestion(SystemController.Grade, SystemController.Level);
+            questionData = QuestionDataBase.GetQuestion(GameController.Grade, GameController.Level);
             questionTextField.text = questionData.Question;
 
             answerInputField.onValueChanged.AddListener(SetAnswer);
@@ -37,11 +37,11 @@ namespace MattyMacCat.Core
             bool reset = false;
             if (answer == questionData.Answer)
             {
-                reset = SystemController.HitEnemy();
+                reset = GameController.HitEnemy();
             }
             else
             {
-                reset = SystemController.HitPlayer();
+                reset = GameController.HitPlayer();
             }
 
             if (!reset)
