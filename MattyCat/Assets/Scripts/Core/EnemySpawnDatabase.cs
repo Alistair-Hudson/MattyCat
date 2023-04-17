@@ -17,6 +17,32 @@ namespace MattyMacCat.Core
 
         [SerializeField]
         private List<EnemyData> enemyDatas = new List<EnemyData>();
-        public List<EnemyData> EnemyDatas { get => enemyDatas; }
+
+        private Dictionary<int, Dictionary<int, List<GameObject>>> enemyDatabase = null;
+
+        private void BuildDataBase()
+        {
+            enemyDatabase = new Dictionary<int, Dictionary<int, List<GameObject>>>();
+            foreach (var data in enemyDatas)
+            {
+                if (!enemyDatabase.ContainsKey(data.Grade))
+                {
+                    enemyDatabase.Add(data.Grade, new Dictionary<int, List<GameObject>>());
+                }
+                if (!enemyDatabase[data.Grade].ContainsKey(data.Level))
+                {
+                    enemyDatabase[data.Grade].Add(data.Level, new List<GameObject>());
+                }
+                enemyDatabase[data.Grade][data.Level].Add(data.EnemyPrefab);
+            }
+        }
+
+        public GameObject GetEnemey(int grade, int level)
+        {
+            if (enemyDatabase == null) BuildDataBase();
+            if (!enemyDatabase.ContainsKey(grade)) return null;
+            if (!enemyDatabase[grade].ContainsKey(level)) return null;
+            return enemyDatabase[grade][level][Random.Range(0, enemyDatabase[grade][level].Count)];
+        }
     }
 }

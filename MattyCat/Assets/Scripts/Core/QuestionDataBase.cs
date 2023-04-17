@@ -42,7 +42,7 @@ namespace MattyMacCat.Core
         {
             if (!dataBase.ContainsKey(grade)) return default;
             if (!dataBase[grade].ContainsKey(level)) return default;
-            return dataBase[grade][level][Random.Range(0, dataBase[grade].Count)];
+            return dataBase[grade][level][Random.Range(0, dataBase[grade][level].Count)];
         }
     }
 }

@@ -19,6 +19,14 @@ namespace MattyMacCat.Core
         private static int enemyHitPoints = 10;
         public static int EnemyHitPoints { get => enemyHitPoints; }
 
+        private static EnemySpawnDatabase spawnDatabase = null;
+        public static EnemySpawnDatabase SpawnDatabase { get => spawnDatabase; }
+
+        private void Awake()
+        {
+            spawnDatabase = (EnemySpawnDatabase)Resources.Load("EnemySpawnDatabase");
+        }
+
         public static bool HitPlayer()
         {
             playerHitPoints--;
