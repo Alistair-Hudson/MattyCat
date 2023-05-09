@@ -390,6 +390,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProblemContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 1854028876335379597, guid: d70623279d6924646a5a2192d9a9ac7a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854028876335379597, guid: d70623279d6924646a5a2192d9a9ac7a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854028876335379597, guid: d70623279d6924646a5a2192d9a9ac7a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1854028876335379597, guid: d70623279d6924646a5a2192d9a9ac7a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4888861087534874522, guid: d70623279d6924646a5a2192d9a9ac7a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
