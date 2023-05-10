@@ -20,6 +20,11 @@ namespace MattyMacCat.UI
             _playerProgress.OnLevelUp.AddListener(ResetBar);
         }
 
+        private void Start()
+        {
+            UpdateDisplay();
+        }
+
         private void UpdateDisplay()
         {
             _experienceBar.fillAmount = _playerProgress.CurrentExperience / _playerProgress.ExperiencedNeeded;
