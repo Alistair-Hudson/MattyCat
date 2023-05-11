@@ -19,6 +19,111 @@ namespace MattyMacCat.Core
         public void Awake()
         {
             if (isLoaded) return;
+            LoadAutoGenerateQuestions();
+            LoadWrittenQuestions();
+            isLoaded = true;
+        }
+
+        private void LoadAutoGenerateQuestions()
+        {
+            for (int i = 1; i <= 4; i++)
+            {
+                switch (i)
+                {
+                    case 1:
+                        dataBase.Add(i, new Dictionary<int, List<QuestionData>>());
+                        for (int j = 0; j <= 10; j++)
+                        {
+                            dataBase[i].Add(j, new List<QuestionData>());
+                            var questionList = dataBase[i][j];
+                            CreateAdditionQuestions(j, questionList);
+                        }
+                        break;
+                    case 2:
+                        dataBase.Add(i, new Dictionary<int, List<QuestionData>>());
+                        for (int j = 0; j <= 10; j++)
+                        {
+                            dataBase[i].Add(j, new List<QuestionData>());
+                            var questionList = dataBase[i][j];
+                            CreateSubtractionQuestions(j, questionList);
+                        }
+                        break;
+                    case 3:
+                        dataBase.Add(i, new Dictionary<int, List<QuestionData>>());
+                        for (int j = 0; j <= 12; j++)
+                        {
+                            dataBase[i].Add(j, new List<QuestionData>());
+                            var questionList = dataBase[i][j];
+                            CreateMultiplicationQuestions(j, questionList);
+                        }
+                        break;
+                    case 4:
+                        dataBase.Add(i, new Dictionary<int, List<QuestionData>>());
+                        for (int j = 0; j <= 12; j++)
+                        {
+                            dataBase[i].Add(j, new List<QuestionData>());
+                            var questionList = dataBase[i][j];
+                            CreateDivisionQuestions(j, questionList);
+                        }
+                        break;
+                }
+            }
+        }
+
+        private void CreateDivisionQuestions(int i, List<QuestionData> questionList)
+        {
+            for (int j = 0; j <= 10; j++)
+            {
+                QuestionData newQuestion = new QuestionData
+                {
+                    Question = $"{i * j} / {i} =",
+                    Answer = j
+                };
+                questionList.Add(newQuestion);
+            }
+        }
+
+        private void CreateMultiplicationQuestions(int i, List<QuestionData> questionList)
+        {
+            for (int j = 0; j <= 10; j++)
+            {
+                QuestionData newQuestion = new QuestionData
+                {
+                    Question = $"{i} * {j} =",
+                    Answer = i * j
+                };
+                questionList.Add(newQuestion);
+            }
+        }
+
+        private void CreateSubtractionQuestions(int i, List<QuestionData> questionList)
+        {
+            for (int j = 0; j <= 10; j++)
+            {
+                QuestionData newQuestion = new QuestionData
+                {
+                    Question = $"{i + j} - {i} =",
+                    Answer = j
+                };
+                questionList.Add(newQuestion);
+            }
+        }
+
+        private void CreateAdditionQuestions(int i, List<QuestionData> questionList)
+        {
+            for (int j = 0; j <= 10; j++)
+            {
+                QuestionData newQuestion = new QuestionData
+                {
+                    Question = $"{i} + {j} =",
+                    Answer = i + j
+                };
+                questionList.Add(newQuestion);
+            }
+        }
+
+        private static void LoadWrittenQuestions()
+        {
             var questions = Resources.LoadAll("Questions");
             foreach (var question in questions)
             {
@@ -39,7 +144,6 @@ namespace MattyMacCat.Core
                 }
                 dataBase[q.Grade][q.Level].Add(qd);
             }
-            isLoaded = true;
         }
 
         public static QuestionData GetQuestion(int grade, int level)
